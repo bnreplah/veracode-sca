@@ -6,7 +6,7 @@ import {runAction} from './srcclr';
 
 const options: Options = {
     quick: core.getBooleanInput('quick'),
-    updateAdvisor: core.getBooleanInput('update_advisor'),
+    updateAdvisor: core.getBooleanInput('update-advisor'),
     minCVSSForIssue: parseFloat(core.getInput('min-cvss-for-issue')) || 0,
     url: core.getInput('url'),
     github_token: core.getInput('github_token',{required:true}),
@@ -18,7 +18,8 @@ const options: Options = {
     "skip-vms": core.getBooleanInput('skip-vms'),
     "no-graphs": core.getBooleanInput('no-graphs'),
     recursive: core.getBooleanInput('recursive'),
-    "skip-collectors": core.getInput('skip-collectors').split(',')
+    "skip-collectors": core.getInput('skip-collectors').split(','),
+    pullRequest: core.getBooleanInput('pull-request'),
     
 }
 
