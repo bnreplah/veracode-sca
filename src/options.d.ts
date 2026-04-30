@@ -13,7 +13,7 @@ export interface Options {
     "skip-vms":boolean,
     "no-graphs":boolean,
     "skip-collectors": Array<string>,
-    "update-advisor":boolean
+    "updateAdvisor":boolean
 }
 
 
