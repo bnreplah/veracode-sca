@@ -3,7 +3,7 @@ import { execSync, spawn } from "child_process";
 
 import * as core from '@actions/core'
 import { Options } from "./options";
-import { SCA_OUTPUT_FILE,run, runText } from "./index";
+import { SCA_OUTPUT_FILE,run, runText, APPNAME } from "./index";
 import * as github from '@actions/github'
 import { env } from "process";
 import { writeFile } from 'fs';
@@ -41,9 +41,10 @@ export async function runAction (options: Options)  {
         const noGraphs = options["no-graphs"]
         const skipVMS = options["skip-vms"]
 
-        const commandOutput = options.createIssues ? `--json=${SCA_OUTPUT_FILE}` : ''; 
+        const commandOutput = options.createIssues ? `--json=${SCA_OUTPUT_FILE}` : '';
+        const appName = options.appName? `--appname=${APPNAME}`:'';
         extraCommands = `${extraCommands}${options.recursive?'--recursive ':''}${options.quick? '--quick ':''}${options.allowDirty? '--allow-dirty ':''}${options.updateAdvisor? '--update-advisor ':''}${skipVMS? '--skip-vms ':''}${noGraphs? '--no-graphs ':''}${options.debug? '--debug ':''}${skipCollectorsAttr}${options.pullRequest? '--pull-request ':''}`;
-        const command = `curl -sSL https://download.sourceclear.com/ci.sh | sh -s -- scan ${extraCommands} ${commandOutput}`;
+        const command = `curl -sSL https://download.sourceclear.com/ci.sh | sh -s -- scan ${extraCommands} ${appName} ${commandOutput}`;
         core.info(command);
 
 
