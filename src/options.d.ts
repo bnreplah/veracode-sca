@@ -1,5 +1,6 @@
 export interface Options {
     quick: boolean,
+    appname: string,
     updateAdvisor: boolean,
     minCVSSForIssue: number,
     url: string,
